@@ -3,7 +3,7 @@ import { InputStyles } from '../styles/InputStyles';
 import { SelectStyles } from '../styles/SelectStyles';
 import { FormStyles } from '../styles/ComponentStyles';
 
-export default function Form() {
+export default function Form({ setQuery }) {
   const [state, setState] = useState({
     description: '',
     amount: 0,
@@ -19,9 +19,24 @@ export default function Form() {
     });
   }
 
+  function handleSubmit(event) {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(state)
+    };
+    fetch('http://localhost:3001/spendings', requestOptions)
+      .then(response => response.json())
+      .then(data => {
+        setQuery({ orderBy: '-date', filter: '' });
+      });
+    console.log(state);
+    event.preventDefault();
+  }
+
   return (
     <>
-      <FormStyles>
+      <FormStyles onSubmit={handleSubmit}>
         <InputStyles
           type='text'
           placeholder='description'

@@ -6,15 +6,22 @@ import Layout from './components/Layout';
 
 export default function App() {
   const [spendings, setSpendings] = useState([]);
-
+  const [query, setQuery] = useState({
+    orderBy: '-date',
+    filter: ''
+  });
   return (
     <>
       <Layout>
-        <Form />
-        <FiltersAndOrderings />
+        <Form  setQuery={setQuery} />
+        <FiltersAndOrderings
+          query={query}
+          setQuery={setQuery}
+        />
         <SpendingList
           spendings={spendings}
           setSpendings={setSpendings}
+          query={query}
         />
       </Layout>
     </>
