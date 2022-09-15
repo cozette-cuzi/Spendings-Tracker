@@ -4,7 +4,7 @@
   "description": "Polygence Interview Exercise Backend API",
   "main": "index.js",
   "scripts": {
-    "start": "node -e \"require('./app').listen(5000);\"",
+    "start": "nodemon app.js",
     "test": "jest"
   },
   "author": "Polygence",

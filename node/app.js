@@ -5,10 +5,10 @@ var routes = require('./routes.js');
 
 const app = express();
 app.use(cors());
-app.listen(3000, () => {
-  console.log("Server running on port 3000");
+app.listen(3001, () => {
+  console.log("Server running on port 3001");
 });
 app.use(bodyParser.json());
-app.use('/api', routes);
+app.use('', routes);
 
 module.exports = app;

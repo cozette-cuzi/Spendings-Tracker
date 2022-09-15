@@ -3,11 +3,21 @@ const spendings = [];
 
 exports.spendingsList = (req, res) => {
     let modifiedSpendings = spendings;
-    if (req.query.orderBy && req.query.orderBy == "date") {
-        modifiedSpendings.sort((a, b) => (a.spent_at > b.spent_at) ? 1 : -1);
-    } else if (req.query.orderBy && req.query.orderBy == "amount") {
-        modifiedSpendings.sort((a, b) => a.amount - b.amount);
+    console.log(req.query);
+    if (req.query.orderBy) {
+        let orderBy = req.query.orderBy;
+        let asc = 1;
+        if (orderBy[0] == '-') {
+            asc = -1;
+            orderBy = orderBy.substring(1);
+        }
+        if (orderBy == "date") {
+            modifiedSpendings.sort((a, b) => (a.spent_at > b.spent_at) ? asc * 1 : asc * -1);
+        } else if (orderBy == "amount") {
+            modifiedSpendings.sort((a, b) => asc * (a.amount - b.amount));
+        }
     }
+
 
     if (req.query.filter) {
         console.log(req.query.filter);
@@ -25,5 +35,5 @@ exports.addSpending = (req, res) => {
         currency: req.body.currency
     });
 
-    return true;
+    return spendings;
 };
