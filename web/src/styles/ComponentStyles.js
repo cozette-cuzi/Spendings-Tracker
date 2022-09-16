@@ -64,7 +64,7 @@ export const FormStyles = styled.form`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 4rem;
+  margin-bottom: 1rem;
 `;
 
 export const HeaderStyles = styled.header`
@@ -235,4 +235,16 @@ export const ErrorMessage = styled.h1`
   padding: 10px 15px;
   border-radius: 8px;
   max-width: 80%;
+`;
+
+
+
+export const FormErrorMessage = styled.p`
+  
+  color: red;
+  font-wight: lighter;
+  margin: 0;
+  font-size: 12px;
+  padding-left: 2px;
+
 `;
